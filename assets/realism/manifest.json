@@ -1,0 +1,20 @@
+{
+  "source": "Poly Haven",
+  "license": "CC0",
+  "resolution": "1K",
+  "files": {
+    "brick_diffuse": "/assets/realism/brick_diffuse.jpg",
+    "brick_normal": "/assets/realism/brick_normal.jpg",
+    "brick_roughness": "/assets/realism/brick_roughness.jpg",
+    "asphalt_diffuse": "/assets/realism/asphalt_diffuse.jpg",
+    "asphalt_normal": "/assets/realism/asphalt_normal.jpg",
+    "asphalt_roughness": "/assets/realism/asphalt_roughness.jpg",
+    "pavement_diffuse": "/assets/realism/pavement_diffuse.jpg",
+    "pavement_normal": "/assets/realism/pavement_normal.jpg",
+    "pavement_roughness": "/assets/realism/pavement_roughness.jpg",
+    "concrete_diffuse": "/assets/realism/concrete_diffuse.jpg",
+    "concrete_normal": "/assets/realism/concrete_normal.jpg",
+    "concrete_roughness": "/assets/realism/concrete_roughness.jpg",
+    "environment_hdri": "/assets/realism/urban_street_01.hdr"
+  }
+}

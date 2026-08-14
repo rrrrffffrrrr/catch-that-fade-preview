@@ -1,0 +1,577 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    >
+
+    <title>
+        Catch That Fade — Who Said What?
+    </title>
+
+
+  <script type="module" crossorigin src="./assets/index-CGZ18kzl.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DD_s9Y0c.css">
+</head>
+
+
+<body>
+
+<div id="game"></div>
+
+
+<div id="characterStatus">
+    REAL CHARACTER BUILD
+</div>
+
+<div id="performanceMeter">
+    <strong id="liveFPS">-- FPS</strong>
+    <span id="liveRenderStats">-- calls</span>
+</div>
+
+
+
+
+<!-- ======================================================
+     GAME BRAND
+     ====================================================== -->
+
+<div id="brand">
+
+    <div class="brand-title">
+        CATCH THAT FADE
+    </div>
+
+    <div class="brand-version">
+        PLAYABLE PREVIEW 0.2
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     MISSION HUD
+     ====================================================== -->
+
+<div id="missionHUD">
+
+    <div id="missionNumber">
+        MISSION 01
+    </div>
+
+    <div id="missionTitle">
+        WHO SAID WHAT?
+    </div>
+
+    <div id="missionPhase">
+        PHONE MESSAGE
+    </div>
+
+    <div id="objective">
+        Read Jay's message
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     PHONE NOTIFICATION
+     ====================================================== -->
+
+<button id="phoneNotification">
+
+    <div class="phone-icon">
+        📱
+    </div>
+
+    <div class="notification-copy">
+
+        <div class="notification-name">
+            JAY
+        </div>
+
+        <div class="notification-text">
+            Where you at? Come meet me.
+        </div>
+
+    </div>
+
+    <div class="notification-key">
+        P
+    </div>
+
+</button>
+
+
+<!-- ======================================================
+     PHONE
+     ====================================================== -->
+
+<div
+    id="phoneOverlay"
+    class="modalOverlay"
+>
+
+    <div id="phone">
+
+        <div class="phone-speaker"></div>
+
+        <div class="phone-status">
+
+            <span>
+                18:15
+            </span>
+
+            <span>
+                ●●●
+            </span>
+
+        </div>
+
+        <div class="phone-app-title">
+            MESSAGES
+        </div>
+
+        <div class="message-contact">
+            JAY
+        </div>
+
+        <div class="incoming-message">
+            Where you at?
+        </div>
+
+        <div class="incoming-message">
+            Need to speak to you.
+        </div>
+
+        <div class="incoming-message">
+            Meet me down the road.
+        </div>
+
+        <button id="phoneContinue">
+            PUT PHONE AWAY
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     DIALOGUE
+     ====================================================== -->
+
+<div
+    id="dialogueOverlay"
+    class="modalOverlay"
+>
+
+    <div id="dialogueBox">
+
+        <div id="dialogueSpeaker">
+            JAY
+        </div>
+
+        <div id="dialogueText">
+            ...
+        </div>
+
+        <div id="dialogueCounter">
+            1 / 1
+        </div>
+
+        <button id="dialogueContinue">
+            CONTINUE
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     WORLD OBJECTIVE MARKER
+     ====================================================== -->
+
+<div id="objectiveMarker">
+
+    <div class="objective-arrow">
+        ▼
+    </div>
+
+    <div id="markerName">
+        JAY
+    </div>
+
+    <div id="markerDistance">
+        -- m
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     INTERACTION
+     ====================================================== -->
+
+<div id="interactionPrompt">
+
+    PRESS
+
+    <strong>
+        E
+    </strong>
+
+    TO TALK
+
+</div>
+
+
+<!-- ======================================================
+     CHECKPOINT
+     ====================================================== -->
+
+<div id="checkpoint">
+
+    <div class="checkpoint-small">
+        CHECKPOINT
+    </div>
+
+    <div id="checkpointText">
+        MISSION UPDATED
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     PRECINCT LABEL
+     ====================================================== -->
+
+<div id="locationCard">
+
+    <div id="locationName">
+        SOUTHCHESTER
+    </div>
+
+    <div id="locationSub">
+        WET EVENING
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     DEBUG
+     ====================================================== -->
+
+<div id="debugHUD">
+
+    <div>
+        <span>FPS</span>
+        <b id="debugFPS">--</b>
+    </div>
+
+    <div>
+        <span>PLAYER</span>
+        <b id="debugPosition">0, 0</b>
+    </div>
+
+    <div>
+        <span>MISSION</span>
+        <b id="debugMission">PHONE_MESSAGE</b>
+    </div>
+
+    <div>
+        <span>TARGET</span>
+        <b id="debugTarget">NONE</b>
+    </div>
+
+    <div>
+        <span>NPCS</span>
+        <b id="debugNPC">0</b>
+    </div>
+
+    <div>
+        <span>TRAFFIC</span>
+        <b id="debugTraffic">0</b>
+    </div>
+
+    <div>
+        <span>GRAPHICS</span>
+        <b id="debugQuality">BALANCED</b>
+    </div>
+
+    <div>
+        <span>WEATHER</span>
+        <b>WET EVENING</b>
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     CONTROLS
+     ====================================================== -->
+
+<div id="controls">
+
+    <strong>
+        CONTROLS
+    </strong>
+
+    <span>
+        W A S D — MOVE
+    </span>
+
+    <span>
+        SHIFT — SPRINT
+    </span>
+
+    <span>
+        DRAG MOUSE — CAMERA
+    </span>
+
+    <span>
+        MOUSE WHEEL — ZOOM
+    </span>
+
+    <span>
+        E — INTERACT
+    </span>
+
+    <span>
+        P — PHONE
+    </span>
+
+    <span>
+        1 / 2 / 3 — GRAPHICS
+    </span>
+
+    <span>
+        F3 — DEBUG
+    </span>
+
+    <span>
+        F4 — DEV MENU
+    </span>
+
+</div>
+
+
+<!-- ======================================================
+     DEV PANEL
+     ====================================================== -->
+
+<div id="devPanel">
+
+    <div class="dev-title">
+        CTF DEVELOPMENT
+    </div>
+
+    <button data-dev="spawn">
+        TELEPORT — START
+    </button>
+
+    <button data-dev="jay">
+        TELEPORT — JAY
+    </button>
+
+    <button data-dev="precinct">
+        TELEPORT — PRECINCT
+    </button>
+
+    <button data-dev="kane">
+        TELEPORT — KANE
+    </button>
+
+    <button data-dev="rain">
+        TOGGLE RAIN
+    </button>
+
+    <button data-dev="reset">
+        RESET MISSION
+    </button>
+
+</div>
+
+
+<!-- ======================================================
+     GRAPHICS TOAST
+     ====================================================== -->
+
+<div id="qualityToast">
+    BALANCED
+</div>
+
+
+<!-- ======================================================
+     COMBAT HUD
+     ====================================================== -->
+
+<div id="combatHUD">
+
+    <div class="fighterPanel playerPanel">
+
+        <div class="fighterHeading">
+
+            <strong>
+                PLAYER
+            </strong>
+
+            <span id="playerHealthText">
+                100
+            </span>
+
+        </div>
+
+        <div class="healthTrack">
+
+            <div
+                id="playerHealthBar"
+                class="healthBar"
+            ></div>
+
+        </div>
+
+        <div class="staminaTrack">
+
+            <div
+                id="playerStaminaBar"
+                class="staminaBar"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <div id="fightCentre">
+
+        <div id="fightStatus">
+            FIGHT
+        </div>
+
+        <div id="fightDistance">
+            0.0 M
+        </div>
+
+    </div>
+
+
+    <div class="fighterPanel kanePanel">
+
+        <div class="fighterHeading">
+
+            <strong>
+                KANE
+            </strong>
+
+            <span id="kaneHealthText">
+                100
+            </span>
+
+        </div>
+
+        <div class="healthTrack">
+
+            <div
+                id="kaneHealthBar"
+                class="healthBar"
+            ></div>
+
+        </div>
+
+        <div class="staminaTrack">
+
+            <div
+                id="kaneStaminaBar"
+                class="staminaBar"
+            ></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="fightControls">
+
+    <span>
+        J — JAB
+    </span>
+
+    <span>
+        K — CROSS
+    </span>
+
+    <span>
+        U — LEFT HOOK
+    </span>
+
+    <span>
+        I — RIGHT HOOK
+    </span>
+
+    <span>
+        SPACE — BLOCK
+    </span>
+
+    <span>
+        Q / R — SLIP
+    </span>
+
+</div>
+
+
+<div id="hitFlash"></div>
+
+
+<div id="fightResult">
+
+    <div id="fightResultSmall">
+        MISSION 01
+    </div>
+
+    <div id="fightResultTitle">
+        KANE DOWN
+    </div>
+
+    <div id="fightResultSub">
+        WHO SAID WHAT?
+    </div>
+
+</div>
+
+
+
+<!-- ======================================================
+     LOADING
+     ====================================================== -->
+
+<div id="loading">
+
+    <div class="loading-title">
+        CATCH THAT FADE
+    </div>
+
+    <div class="loading-rule"></div>
+
+    <div class="loading-sub">
+        SOUTHCHESTER — WET EVENING
+    </div>
+
+</div>
+
+
+
+</body>
+
+</html>
